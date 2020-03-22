@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  web:
+    restart: always
+    # container_name: mainapp
+    build: ./web # folder yang di build
+    command: python manage.py runserver 0.0.0.0:8000 # command buat ngejalanin server
+    volumes:
+      - ./HostApp/:/usr/src/web/ # share project local
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+
+  db:
+    restart: always
+    # container_name: dbapp
+    image: postgres:12.0-alpine
+    volumes:
+      # - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_django
+      - POSTGRES_PASSWORD=hello_django
+      - POSTGRES_DB=hello_django_dev
+    
+volumes:
+  postgres_data: 
