@@ -1,0 +1,3 @@
+harus membuat folder <app yang akan dibuat>
+sebelum menjalankan commang :
+    py manage.py startapp hello_django scr/<app yang akan dibuat>
