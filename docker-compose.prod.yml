@@ -9,8 +9,9 @@ services:
       dockerfile: Dockerfile.prod
     # command: python manage.py runserver 0.0.0.0:8000 # command buat ngejalanin server
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
-    # volumes:
-    #   - ./HostApp/:/usr/src/web/ # share project local
+    volumes:
+      # - ./HostApp/:/usr/src/web/ # share project local
+      - static_volume:/home/app/web/staticfiles
     # ports:
     #   - 8000:8000
     expose: 
@@ -30,6 +31,8 @@ services:
   nginx:
     # restart: always
     build: ./nginx
+    volumes:
+      - static_volume:/home/app/web/staticfiles
     ports:
       - 1337:80
     depends_on:
@@ -37,3 +40,4 @@ services:
     
 volumes:
   postgres_data: 
+  static_volume:
