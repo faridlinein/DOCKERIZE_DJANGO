@@ -1,4 +1,5 @@
 #!/bin/sh
+# dos2unix.exe your-file.sh
 
 if [ "$DATABASE" = "postgres" ]
 then
@@ -11,7 +12,9 @@ then
     echo "PostgreSQL started"
 fi
 
+
 python manage.py flush --no-input
 python manage.py migrate
+python manage.py collectstatic --no-input --clear
 
 exec "$@"

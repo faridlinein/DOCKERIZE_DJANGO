@@ -12,6 +12,10 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
+# set our environment variable for nginx
+# set our environment variable for nginx
+# set our environment variable for nginx
+ENV MUSL_LOCPATH="/usr/share/i18n/locales/musl"
 
 # install psycopg2 dependencies
 RUN apk update \
@@ -21,7 +25,7 @@ RUN apk update \
 RUN pip install --upgrade pip
 RUN pip install flake8
 COPY . /usr/src/app/
-RUN flake8 --ignore=E501,F401,E712,E501,F401 .
+RUN flake8 --ignore=E501,F401,E712,E501,F401,W292 .
 
 
 # Install pip requirements
@@ -47,6 +51,8 @@ RUN addgroup -S app && adduser -S app -G app
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
 RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
+# RUN mkdir $APP_HOME/mediafiles
 WORKDIR $APP_HOME
 
 # install dependencies

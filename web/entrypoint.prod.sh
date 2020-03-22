@@ -1,4 +1,5 @@
 #!/bin/sh
+# dos2unix.exe your-file.sh
 
 if [ "$DATABASE" = "postgres" ]
 then
