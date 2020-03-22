@@ -4,7 +4,9 @@ services:
   web:
     restart: always
     # container_name: mainapp
-    build: ./web # folder yang di build
+    build: 
+      context: ./web
+      dockerfile: Dockerfile.prod
     # command: python manage.py runserver 0.0.0.0:8000 # command buat ngejalanin server
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 #load Gunicorn server
     # volumes:
@@ -13,8 +15,8 @@ services:
       - 8000:8000
     env_file:
       - ./.env.prod
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
 
   db:
     restart: always
