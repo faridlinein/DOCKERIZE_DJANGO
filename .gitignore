@@ -1,0 +1,5 @@
+*.pyc
+
+dir_to_ignore/
+.venv
+.vscode
