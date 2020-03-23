@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  web:
+    # restart: always
+    # container_name: mainapp
+    build: 
+      context: ./web
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./HostApp/:/usr/src/web/ # share project local
+      - ./static_volume:/usr/src/web/dev/static_volume
+      - ./media_volume:/usr/src/web/dev/media_volume
+    expose: 
+      - 8000
+    env_file:
+      - ./.env.dev
+
+  db:
+    # restart: always
+    env_file:
+      - ./.env.dev.db
+
+  nginx:
+    # restart: always
+    volumes:
+      - ./static_volume:/usr/src/dev/static_volume
+      - ./media_volume:/usr/src/dev/media_volume
+    ports:
+      - 1337:80
+    
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume: 
