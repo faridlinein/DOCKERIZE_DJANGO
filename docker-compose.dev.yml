@@ -1,8 +1,8 @@
-version: '3.4'
+version: '3.7'
 
 services:
   web:
-    restart: always
+    # restart: always
     # container_name: mainapp
     build: ./web # folder yang di build
     command: python manage.py runserver 0.0.0.0:8000 # command buat ngejalanin server
@@ -16,7 +16,7 @@ services:
       - db
 
   db:
-    restart: always
+    # restart: always
     # container_name: dbapp
     image: postgres:12.0-alpine
     volumes:
