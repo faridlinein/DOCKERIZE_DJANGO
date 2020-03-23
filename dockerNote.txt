@@ -1,0 +1,21 @@
+COMMAND LINE
+
+$ docker-compose up --build
+$ docker-compose down -v
+
+$ docker-compose -f docker-compose.prod.yml up -d --build
+$ docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+$ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
+$ docker-compose -f docker-compose.prod.yml exec web python manage.py createsuperuser
+
+$ docker-compose -f docker-compose.prod.yml stop
+
+-------------------------------------------------------------------------------------------------------
+You can stop your containers using the stop or down command, but the down command does more than stopping your containers.
+The docker-compose stop command will stop your containers, but it won’t remove them.
+
+The docker-compose down command will stop your containers, but it also removes the stopped containers as well as any networks that were created.
+
+You can take down 1 step further and add the -v flag to remove all volumes too. This is great for doing a full blown reset on your environment by running docker-compose down -v.
+
+There’s other neat things you could with the down command. Run the docker-compose down --help command to learn more about them.

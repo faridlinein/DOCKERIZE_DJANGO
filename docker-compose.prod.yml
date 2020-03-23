@@ -12,6 +12,7 @@ services:
     volumes:
       # - ./HostApp/:/usr/src/web/ # share project local
       - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
     # ports:
     #   - 8000:8000
     expose: 
@@ -33,6 +34,7 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
     ports:
       - 1337:80
     depends_on:
@@ -41,3 +43,4 @@ services:
 volumes:
   postgres_data: 
   static_volume:
+  media_volume:
