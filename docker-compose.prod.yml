@@ -21,6 +21,7 @@ services:
       - ./.env.prod
     depends_on:
       - db
+      
   db:
     # restart: always
     # container_name: dbapp
