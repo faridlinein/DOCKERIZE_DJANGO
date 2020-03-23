@@ -10,6 +10,9 @@ $ docker-compose -f docker-compose.prod.yml exec web python manage.py createsupe
 
 $ docker-compose -f docker-compose.prod.yml stop
 
+UPDATE
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
 -------------------------------------------------------------------------------------------------------
 You can stop your containers using the stop or down command, but the down command does more than stopping your containers.
 The docker-compose stop command will stop your containers, but it won’t remove them.

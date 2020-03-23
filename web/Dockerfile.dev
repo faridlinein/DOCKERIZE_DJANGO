@@ -64,7 +64,7 @@ RUN pip install --no-cache /wheels/*
 
 # copy entrypoint
 # COPY ./entrypoint.sh /usr/src/app/entrypoint.sh # DevelopmenStage
-COPY ./entrypoint.prod.sh $APP_HOME
+COPY ./entrypoint.dev.sh $APP_HOME
 
 # copy project
 # COPY . /usr/src/app/ # DevelopmenStage
@@ -78,4 +78,4 @@ USER app
 
 # run entrypoint.sh
 # ENTRYPOINT ["/usr/src/app/entrypoint.sh"] # DevelopmenStage
-ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
+ENTRYPOINT ["/home/app/web/entrypoint.dev.sh"]
