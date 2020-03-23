@@ -13,3 +13,7 @@ def image_upload(request):
             "image_url": image_url
         })
     return render(request, "upload.html")
+
+    """NOTE_START 
+    https://docs.docker.com/compose/compose-file/#short-syntax-3
+    NOTE_END""" 
