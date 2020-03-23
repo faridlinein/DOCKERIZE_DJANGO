@@ -1,3 +1,31 @@
 harus membuat folder <app yang akan dibuat>
 sebelum menjalankan commang :
     py manage.py startapp hello_django scr/<app yang akan dibuat>
+
+---------------------------------------------------------------------------------------------------------
+
+django apps in subfolder
+Given a sub-directory named "apps" for all django applications, the following steps are used to setup the sub-directory and create apps.
+
+1 create app sub folder - "apps"
+mkdir apps
+touch apps/__init__.py
+
+2 add app to sub folder:
+mkdir apps/myapp
+python manage.py startapp myapp  apps/myapp
+
+3 Install myapp like this:
+INSTALLED_APPS = (
+    ...
+    'apps.myapp',
+)
+
+4 Create urls like this:
+urlpatterns = patterns('', 
+  url(r'^myapp', include('apps.myapp.urls')),
+  ...
+)
+
+5 make migrations like this:
+makemigrations myapp --pythonpath='apps'
